@@ -1,4 +1,4 @@
-# This script defines high-level abstractions for vertices in a network and 
+# This module defines high-level abstractions for vertices in a network and 
 # for different kinds networks.
 
 import matplotlib.delaunay, networkx, numpy, operator, random, time
