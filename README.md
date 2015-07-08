@@ -8,6 +8,12 @@
 > python gen_network.py <topology> <size> <params> <outfile>
 ```
 
+`network_stats.py`: This script prints as output the values of some of the basic properties of the input network in GraphML/GML format.
+
+```bash
+> python network_stats.py <infile>
+```
+
 `graphml2gml.py`: This script converts a network file in GraphML format to one in GML format.
 
 ```bash
