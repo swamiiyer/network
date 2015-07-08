@@ -14,6 +14,12 @@
 > python graphml2gml.py <infile>
 ```
 
+`gml2graphml.py`: This script converts a network file in GML format to one in GraphML format.
+
+```bash
+> python gml2graphml.py <infile>
+```
+
 ## Software Dependencies
 
 * [Python](https://www.python.org/)
