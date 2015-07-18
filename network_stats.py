@@ -23,13 +23,9 @@ def main(args):
     m = len(g.edges())
     print "number of vertices = %d" %(n)
     print "number of edges = %d" %(m)
-    print "connectance = %f" %(1.0 * m / (n * (n - 1) / 2))
     print "average degree = %f" %(numpy.average(g.degree().values()))
-    components = networkx.connected_components(g)
-    print "number of components = %d" %(len(components))
-    print "fractional size of largest component = %f" \
-        %(max([len(i) * 1. for i in components]) / \
-              len(g.nodes()))
+    print "number of components = %d" \
+        %(networkx.number_connected_components(g))
     print "average clustering coefficient = %f" \
         %(networkx.average_clustering(g))
     print "assortativity coefficient = %f" \
