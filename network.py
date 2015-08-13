@@ -541,7 +541,7 @@ def build_network(vertices, topology, params):
       Complete: {}
       Erdos_Renyi: {"p": ..., "seed": ...}
       Barabasi_Albert: {"m": ..., "seed": ...}
-      Powerlaw_Homophilic: {"m": ..., "h": ..., "maxiter": ..., 
+      Powerlaw_Homophilic: {"m": ..., "r": ..., "maxiter": ..., 
                     "seed": ...}
       Powerlaw_Clustered: {"m": ..., "p": ..., "seed": ...}
       Random_Regular: {"degree": ..., "seed": ...}
@@ -562,7 +562,7 @@ def build_network(vertices, topology, params):
         net = Barabasi_Albert_Network(vertices, params["m"], params["seed"])
     elif topology == "Powerlaw_Homophilic":
         net = Powerlaw_Homophilic_Network(vertices, params["m"], 
-                                           params["h"], params["maxiter"], 
+                                           params["r"], params["maxiter"], 
                                            params["seed"])
     elif topology == "Powerlaw_Clustered":
         net = Powerlaw_Clustered_Network(vertices, params["m"], params["p"], 
