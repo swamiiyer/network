@@ -7,7 +7,7 @@
 #
 # The allowed topologies are:
 #
-#      Complete, Erdos_Renyi, Barabasi_Albert, Powerlaw_Assortative, 
+#      Complete, Erdos_Renyi, Barabasi_Albert, Powerlaw_Homophilic, 
 #      Powerlaw_Clustered, Random_Regular, Grid_2D, KNN, 
 #      Watts_Strogatz, Random_Geometric, Delaunay
 #
@@ -17,8 +17,8 @@
 #      Complete: {}
 #      Erdos_Renyi: {"p": ..., "seed": ...}
 #      Barabasi_Albert: {"m": ..., "seed": ...}
-#      Powerlaw_Assortative: {"m": ..., "r": ..., "maxiter": ..., 
-#                             "seed": ...}
+#      Powerlaw_Homophilic: {"m": ..., "r": ..., "maxiter": ..., 
+#                            "seed": ...}
 #      Powerlaw_Clustered: {"m": ..., "p": ..., "seed": ...}
 #      Random_Regular: {"degree": ..., "seed": ...}
 #      Grid_2D: {"m": ..., "n": ..., "periodic": ...}
