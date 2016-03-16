@@ -19,7 +19,7 @@
 #      Barabasi_Albert: {"m": ..., "seed": ...}
 #      Powerlaw_Homophilic: {"m": ..., "r": ..., "maxiter": ..., 
 #                            "seed": ...}
-#      Powerlaw_Clustered: {"m": ..., "p": ..., "seed": ...}
+#      Powerlaw_Clustered: {"m": ..., "c": ..., "seed": ...}
 #      Random_Regular: {"degree": ..., "seed": ...}
 #      Grid_2D: {"m": ..., "n": ..., "periodic": ...}
 #      KNN: {"n": ..., "k": ..., "periodic": ...}

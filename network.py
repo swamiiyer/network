@@ -255,22 +255,29 @@ class Powerlaw_Clustered_Network(Network):
     Representation of a Powerlaw Clustered network.
     """
     
-    def __init__(self, vertices, m, p, seed = int(time.time())):
+    def __init__(self, vertices, m, c, seed = int(time.time())):
         """
         Construct a Powerlaw Clustered network. The vertices argument contains 
         objects of type Vertex representing the vertices of the network. The 
         m argument specifies the number of attachments made from the 
         new vertex to the existing vertices during the network construction 
-        process. The p argument specifies the probability of adding a triangle 
-        after adding a random edge. The seed argument is the seed for 
-        the random number generator used to build the network.
+        process. The c argument specifies the desired level of clustering. 
+        The seed argument is the seed for the random number generator used to 
+        build the network.
+
+        Note that the desired level of clustering may not always be achievable.
         """
 
         self.vertices = vertices
         self.m = m
-        self.p = p
+        self.c = c
         self.seed = seed
-        self.g = networkx.powerlaw_cluster_graph(len(vertices), m, p, seed = seed)
+        p = 0.0
+        g = networkx.powerlaw_cluster_graph(len(vertices), m, p, seed = seed)
+        while p < 1 and networkx.average_clustering(g) < c:
+            g = networkx.powerlaw_cluster_graph(len(vertices), m, p)
+            p += 0.01
+        self.g = g
         self.__adj_list_map__ = {}
 
     def __str__(self):
@@ -279,8 +286,8 @@ class Powerlaw_Clustered_Network(Network):
         """
 
         return \
-            "Powerlaw Clustered Network (n = %d, m = %d, p = %f, seed = %d)" \
-            %(len(self.vertices), self.m, self.p, self.seed)
+            "Powerlaw Clustered Network (n = %d, m = %d, c = %f, seed = %d)" \
+            %(len(self.vertices), self.m, self.c, self.seed)
 
 class Random_Regular_Network(Network):
     """
@@ -543,7 +550,7 @@ def build_network(vertices, topology, params):
       Barabasi_Albert: {"m": ..., "seed": ...}
       Powerlaw_Homophilic: {"m": ..., "r": ..., "maxiter": ..., 
                     "seed": ...}
-      Powerlaw_Clustered: {"m": ..., "p": ..., "seed": ...}
+      Powerlaw_Clustered: {"m": ..., "c": ..., "seed": ...}
       Random_Regular: {"degree": ..., "seed": ...}
       Grid_2D: {"m": ..., "n": ..., "periodic": ...}
       KNN: {"n": ..., "k": ..., "periodic": ...}
@@ -565,7 +572,7 @@ def build_network(vertices, topology, params):
                                            params["r"], params["maxiter"], 
                                            params["seed"])
     elif topology == "Powerlaw_Clustered":
-        net = Powerlaw_Clustered_Network(vertices, params["m"], params["p"], 
+        net = Powerlaw_Clustered_Network(vertices, params["m"], params["c"], 
                                        params["seed"])
     elif topology == "Random_Regular":
         net = Random_Regular_Network(vertices, params["degree"], 
