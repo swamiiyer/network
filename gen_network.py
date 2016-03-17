@@ -42,6 +42,10 @@ def main(args):
     vertices = [Vertex(i) for i in range(0, size)]
     net = build_network(vertices, topology, params)
     g = net.get_structure()
+    if g == None: 
+        E = [(u, v) for u in range(size) for v in range(size) if u < v]
+        g = networkx.Graph()
+        g.add_edges_from(E)
     networkx.write_graphml(g, outfile)
 
 if __name__ == "__main__":
