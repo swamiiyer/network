@@ -14,7 +14,8 @@ def main(argv):
         sys.exit(0)
     infile = argv[0]
     g = networkx.read_graphml(infile)
-    networkx.write_gml(g, infile.replace(".graphml", ".gml"))
+    networkx.write_gml(networkx.from_edgelist(g.edges()), 
+                       infile.replace(".graphml", ".gml"))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
